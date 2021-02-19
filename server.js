@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.static('public'))
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/workoutTracker"
+    process.env.MONGODB_URI || "mongodb://localhost/workoutTracker",
     {
         useNewUrlParser: true,
         useFindAndModify: false,
@@ -19,7 +19,10 @@ mongoose.connect(
     }
 )
 
-require("./routes/htmlRoutes")(app);
-require("./routes/apiRoutes")(app)
+require("./routes/htmlRoutes.js")(app);
+require("./routes/apiRoutes.js")(app)
 
-app.listen(3000);
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
+  });
+  
